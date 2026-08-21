@@ -35,7 +35,459 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <style>
+:root {
+  --brand: #4f46e5;
+  --brand-dark: #1e1b4b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Inter, system-ui, sans-serif;
+  margin: 0;
+}
+
+.view.hidden,
+.panel.hidden,
+.hidden {
+  display: none !important;
+}
+
+.auth-shell {
+  position: relative;
+  background: radial-gradient(1200px 600px at 10% -10%, #4338ca 0%, transparent 55%),
+    radial-gradient(900px 500px at 110% 10%, #2563eb 0%, transparent 50%),
+    linear-gradient(165deg, #1e1b4b 0%, #312e81 42%, #1e3a8a 100%);
+}
+
+.orb {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(60px);
+  opacity: 0.35;
+}
+
+.orb-a {
+  width: 320px;
+  height: 320px;
+  background: #818cf8;
+  top: 12%;
+  left: -6%;
+}
+
+.orb-b {
+  width: 280px;
+  height: 280px;
+  background: #38bdf8;
+  bottom: -8%;
+  right: 4%;
+}
+
+.logo-mark {
+  height: 42px;
+  width: 42px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #818cf8, #4f46e5);
+  color: white;
+  box-shadow: 0 10px 24px rgba(79, 70, 229, 0.35);
+}
+
+.logo-mark-sm {
+  height: 36px;
+  width: 36px;
+  border-radius: 10px;
+}
+
+.portal-card {
+  background: white;
+  border-radius: 1.25rem;
+  padding: 1.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.portal-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 30px 60px -12px rgba(15, 23, 42, 0.45);
+}
+
+.portal-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-size: 1.25rem;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #4f46e5;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}
+
+.field-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 0.4rem;
+}
+
+.field-input {
+  width: 100%;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  padding: 0.7rem 0.85rem;
+  font-size: 0.925rem;
+  color: #0f172a;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.field-input:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  background: linear-gradient(135deg, #4f46e5, #2563eb);
+  color: white;
+  font-weight: 600;
+  border: 0;
+  border-radius: 0.8rem;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(79, 70, 229, 0.28);
+  transition: filter 0.15s, transform 0.15s;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+.resume-drop {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1.5px dashed #c7d2fe;
+  background: #eef2ff;
+  border-radius: 0.9rem;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.sidebar {
+  width: 240px;
+  background: linear-gradient(180deg, #1e1b4b 0%, #312e81 100%);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.nav-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: #c7d2fe;
+  background: transparent;
+  border: 0;
+  border-radius: 0.7rem;
+  padding: 0.7rem 0.85rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.nav-item.active {
+  background: rgba(99, 102, 241, 0.35);
+}
+
+.nav-item-muted {
+  color: #a5b4fc;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.search-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+}
+
+.search-wrap input {
+  flex: 1;
+  border: 0;
+  background: transparent;
+  outline: none;
+  font-size: 0.9rem;
+}
+
+.kanban {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(240px, 1fr));
+  gap: 1rem;
+  min-width: 1280px;
+  align-items: start;
+}
+
+.column {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  min-height: calc(100vh - 140px);
+  display: flex;
+  flex-direction: column;
+}
+
+.column-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 0.95rem 0.6rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.column-title {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 99px;
+}
+
+.count-pill {
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: white;
+  color: #475569;
+  border-radius: 999px;
+  padding: 0.1rem 0.5rem;
+  border: 1px solid #e2e8f0;
+}
+
+.column-body {
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  flex: 1;
+}
+
+.column-body.drag-over {
+  background: #e0e7ff;
+  border-radius: 0 0 1rem 1rem;
+}
+
+.candidate-card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.9rem;
+  padding: 0.85rem;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.candidate-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08);
+}
+
+.candidate-card.dragging {
+  opacity: 0.45;
+}
+
+.card-top {
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+}
+
+.avatar {
+  height: 38px;
+  width: 38px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.avatar-lg {
+  height: 56px;
+  width: 56px;
+  font-size: 1rem;
+  border-radius: 16px;
+}
+
+.skill-chip {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #4338ca;
+  background: #eef2ff;
+  border-radius: 999px;
+  padding: 0.15rem 0.5rem;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(6px);
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.modal-card {
+  position: relative;
+  width: min(560px, 100%);
+  background: white;
+  border-radius: 1.25rem;
+  padding: 1.6rem;
+  box-shadow: 0 25px 50px rgba(15, 23, 42, 0.25);
+  animation: rise 0.2s ease;
+}
+
+.modal-close {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  border: 0;
+  background: #f1f5f9;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  cursor: pointer;
+  color: #475569;
+}
+
+.meta-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.8rem;
+  padding: 0.7rem 0.8rem;
+}
+
+.meta-box dt {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.meta-box dd {
+  margin: 0.2rem 0 0;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.toast {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 80;
+  background: #0f172a;
+  color: white;
+  padding: 0.85rem 1.1rem;
+  border-radius: 0.8rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.3);
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    width: 72px;
+  }
+
+  .sidebar .flex.items-center.gap-3 > div:last-child,
+  .nav-item span,
+  .sidebar .mt-auto,
+  .nav-item {
+    font-size: 0;
+  }
+
+  .nav-item i {
+    font-size: 1rem;
+  }
+}
+
+    </style>
   </head>
   <body class="bg-slate-50 text-slate-800 antialiased">
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
@@ -373,6 +825,424 @@
       </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+const STAGES = [
+  { id: "applied", label: "Applied", color: "#3b82f6" },
+  { id: "screening", label: "Screening", color: "#6366f1" },
+  { id: "interview", label: "Interview", color: "#8b5cf6" },
+  { id: "offered", label: "Offered", color: "#10b981" },
+  { id: "rejected", label: "Rejected", color: "#f43f5e" },
+];
+
+const AVATAR_COLORS = ["#4f46e5", "#2563eb", "#0ea5e9", "#7c3aed", "#0891b2", "#4338ca"];
+
+let candidates = [
+  {
+    id: "c1",
+    name: "Priya Menon",
+    email: "priya.menon@gmail.com",
+    phone: "+91 98450 11234",
+    qualification: "B.Com",
+    experience: 3,
+    ctc: 7.5,
+    skills: ["Excel", "Reconciliation"],
+    noticePeriod: "30 days",
+    notes: "Strong month-end close discipline. Previously owned a 180-invoice aging book at a mid-market FMCG distributor.",
+    stage: "applied",
+    resumeName: "Priya_Menon_AR.pdf",
+  },
+  {
+    id: "c2",
+    name: "Rohan Kapoor",
+    email: "rohan.kapoor@outlook.com",
+    phone: "+91 98110 44521",
+    qualification: "B.Com",
+    experience: 1,
+    ctc: 4.2,
+    skills: ["Tally"],
+    noticePeriod: "Immediate",
+    notes: "Junior AR associate from a CA firm. Fast Tally operator; needs coaching on dispute resolution and dunning cadence.",
+    stage: "applied",
+    resumeName: "Rohan_Kapoor_Resume.pdf",
+  },
+  {
+    id: "c3",
+    name: "Meera Nair",
+    email: "meera.nair@yahoo.com",
+    phone: "+91 98840 77812",
+    qualification: "MBA Finance",
+    experience: 5,
+    ctc: 12.0,
+    skills: ["SAP", "Excel"],
+    noticePeriod: "60 days",
+    notes: "SAP FI-AR experience at a listed manufacturing group. Comfortable with lockbox, dunning, and credit limit workflows.",
+    stage: "applied",
+    resumeName: "Meera_Nair_CV.pdf",
+  },
+  {
+    id: "c4",
+    name: "Daniel Okonkwo",
+    email: "daniel.okonkwo@email.com",
+    phone: "+44 7700 900281",
+    qualification: "B.Com (Hons)",
+    experience: 4,
+    ctc: 9.0,
+    skills: ["Reconciliation", "Excel"],
+    noticePeriod: "30 days",
+    notes: "Bank rec and customer statement specialist. Reduced unapplied cash by 22% in the last fiscal year.",
+    stage: "screening",
+    resumeName: "Daniel_Okonkwo.pdf",
+  },
+  {
+    id: "c5",
+    name: "Aisha Rahman",
+    email: "aisha.rahman@gmail.com",
+    phone: "+91 90080 33410",
+    qualification: "M.Com",
+    experience: 6,
+    ctc: 13.5,
+    skills: ["SAP", "Tally"],
+    noticePeriod: "45 days",
+    notes: "Led a 4-person collections pod. Mix of SAP AR and Tally for group companies. High ownership of overdue >90 days.",
+    stage: "screening",
+    resumeName: "Aisha_Rahman_AR.docx",
+  },
+  {
+    id: "c6",
+    name: "Vikram Singh",
+    email: "vikram.singh@northmail.com",
+    phone: "+91 97111 22009",
+    qualification: "MBA",
+    experience: 7,
+    ctc: 16.0,
+    skills: ["SAP"],
+    noticePeriod: "60 days",
+    notes: "Senior AR executive targeting shared-service roles. Deep FBL5N / customer master / dispute case experience.",
+    stage: "interview",
+    resumeName: "Vikram_Singh_Profile.pdf",
+  },
+  {
+    id: "c7",
+    name: "Elena Petrova",
+    email: "elena.petrova@mail.com",
+    phone: "+49 151 2345678",
+    qualification: "B.Com",
+    experience: 3,
+    ctc: 8.0,
+    skills: ["Excel", "Tally"],
+    noticePeriod: "30 days",
+    notes: "Bilingual collections support. Strong Excel aging models; Tally used for a subsidiary books close.",
+    stage: "interview",
+    resumeName: "Elena_Petrova.pdf",
+  },
+  {
+    id: "c8",
+    name: "Arjun Desai",
+    email: "arjun.desai@finance.in",
+    phone: "+91 98200 55673",
+    qualification: "CA Inter",
+    experience: 8,
+    ctc: 18.0,
+    skills: ["SAP", "Reconciliation"],
+    noticePeriod: "90 days",
+    notes: "Complex intercompany AR and provision for doubtful debts. Interview panel noted excellent control mindset.",
+    stage: "interview",
+    resumeName: "Arjun_Desai_CA.pdf",
+  },
+  {
+    id: "c9",
+    name: "Sarah Chen",
+    email: "sarah.chen@outlook.com",
+    phone: "+1 415 555 0198",
+    qualification: "MBA Finance",
+    experience: 5,
+    ctc: 14.0,
+    skills: ["SAP", "Excel"],
+    noticePeriod: "30 days",
+    notes: "Offer pending compensation confirmation. Background verified. Would own US/APAC collections calendar.",
+    stage: "offered",
+    resumeName: "Sarah_Chen_Resume.pdf",
+  },
+  {
+    id: "c10",
+    name: "Karan Malhotra",
+    email: "karan.malhotra@gmail.com",
+    phone: "+91 98180 66721",
+    qualification: "B.Com",
+    experience: 2,
+    ctc: 6.0,
+    skills: ["Tally"],
+    noticePeriod: "Immediate",
+    notes: "Rejected after screening: limited exposure to customer disputes and three-way matching. May revisit for junior billing.",
+    stage: "rejected",
+    resumeName: "Karan_Malhotra.pdf",
+  },
+];
+
+let activeCandidateId = null;
+let searchQuery = "";
+let draggedId = null;
+
+const views = {
+  landing: document.getElementById("view-landing"),
+  signup: document.getElementById("view-signup"),
+  login: document.getElementById("view-login"),
+  dashboard: document.getElementById("view-dashboard"),
+};
+
+function showView(name) {
+  Object.values(views).forEach((el) => el.classList.add("hidden"));
+  views[name].classList.remove("hidden");
+}
+
+function initials(name) {
+  return name
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((p) => p[0].toUpperCase())
+    .join("");
+}
+
+function avatarColor(id) {
+  let hash = 0;
+  for (const ch of id) hash = (hash + ch.charCodeAt(0)) % AVATAR_COLORS.length;
+  return AVATAR_COLORS[hash];
+}
+
+function formatCtc(value) {
+  return `₹${Number(value).toFixed(1)} LPA`;
+}
+
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  toast.textContent = message;
+  toast.classList.add("show");
+  window.clearTimeout(showToast._t);
+  showToast._t = window.setTimeout(() => toast.classList.remove("show"), 2800);
+}
+
+function matchesSearch(candidate, query) {
+  if (!query) return true;
+  const hay = `${candidate.name} ${candidate.skills.join(" ")} ${candidate.email}`.toLowerCase();
+  return hay.includes(query);
+}
+
+function renderKanban() {
+  const root = document.getElementById("kanban");
+  const query = searchQuery.trim().toLowerCase();
+  const visible = candidates.filter((c) => matchesSearch(c, query));
+  document.getElementById("candidate-count").textContent = `${visible.length} candidate${visible.length === 1 ? "" : "s"}`;
+
+  root.innerHTML = STAGES.map((stage) => {
+    const items = visible.filter((c) => c.stage === stage.id);
+    return `
+      <section class="column" data-stage="${stage.id}">
+        <div class="column-head">
+          <div class="column-title">
+            <span class="dot" style="background:${stage.color}"></span>
+            ${stage.label}
+          </div>
+          <span class="count-pill">${items.length}</span>
+        </div>
+        <div class="column-body" data-drop-stage="${stage.id}">
+          ${items.map(cardMarkup).join("") || emptyColumn()}
+        </div>
+      </section>
+    `;
+  }).join("");
+
+  root.querySelectorAll(".candidate-card").forEach((card) => {
+    card.addEventListener("click", () => openModal(card.dataset.id));
+    card.addEventListener("dragstart", onDragStart);
+    card.addEventListener("dragend", onDragEnd);
+  });
+
+  root.querySelectorAll("[data-drop-stage]").forEach((col) => {
+    col.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      col.classList.add("drag-over");
+    });
+    col.addEventListener("dragleave", () => col.classList.remove("drag-over"));
+    col.addEventListener("drop", (e) => {
+      e.preventDefault();
+      col.classList.remove("drag-over");
+      const id = e.dataTransfer.getData("text/plain") || draggedId;
+      moveCandidate(id, col.dataset.dropStage);
+    });
+  });
+}
+
+function emptyColumn() {
+  return `<p class="text-xs text-slate-400 text-center py-6">No candidates</p>`;
+}
+
+function cardMarkup(c) {
+  const chips = c.skills
+    .map((s) => `<span class="skill-chip">${s}</span>`)
+    .join("");
+  return `
+    <article class="candidate-card" draggable="true" data-id="${c.id}">
+      <div class="card-top">
+        <div class="avatar" style="background:${avatarColor(c.id)}">${initials(c.name)}</div>
+        <div class="min-w-0">
+          <p class="font-semibold text-slate-900 text-sm truncate">${c.name}</p>
+          <p class="text-xs text-slate-500 mt-0.5">${c.experience} yr · ${formatCtc(c.ctc)}</p>
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-1.5 mt-3">${chips}</div>
+      <p class="text-[11px] text-slate-400 mt-2 truncate"><i class="fa-regular fa-clock mr-1"></i>${c.noticePeriod}</p>
+    </article>
+  `;
+}
+
+function onDragStart(e) {
+  draggedId = e.currentTarget.dataset.id;
+  e.dataTransfer.setData("text/plain", draggedId);
+  e.currentTarget.classList.add("dragging");
+}
+
+function onDragEnd(e) {
+  e.currentTarget.classList.remove("dragging");
+  draggedId = null;
+}
+
+function moveCandidate(id, stage) {
+  const candidate = candidates.find((c) => c.id === id);
+  if (!candidate || !stage || candidate.stage === stage) return;
+  candidate.stage = stage;
+  renderKanban();
+  if (activeCandidateId === id) {
+    document.getElementById("stage-select").value = stage;
+  }
+  const label = STAGES.find((s) => s.id === stage).label;
+  showToast(`${candidate.name} moved to ${label}`);
+}
+
+function openModal(id) {
+  const c = candidates.find((x) => x.id === id);
+  if (!c) return;
+  activeCandidateId = id;
+  document.getElementById("modal-name").textContent = c.name;
+  document.getElementById("modal-contact").innerHTML =
+    `<i class="fa-regular fa-envelope mr-1"></i>${c.email}<br/><i class="fa-solid fa-phone mr-1 mt-1"></i>${c.phone}`;
+  document.getElementById("modal-qualification").textContent = c.qualification;
+  document.getElementById("modal-experience").textContent = `${c.experience} year${c.experience === 1 ? "" : "s"}`;
+  document.getElementById("modal-ctc").textContent = formatCtc(c.ctc);
+  document.getElementById("modal-notice").textContent = c.noticePeriod;
+  document.getElementById("modal-notes").textContent = c.notes;
+  document.getElementById("modal-avatar").style.background = avatarColor(c.id);
+  document.getElementById("modal-avatar").textContent = initials(c.name);
+  document.getElementById("modal-skills").innerHTML = c.skills
+    .map((s) => `<span class="skill-chip">${s}</span>`)
+    .join("");
+  const select = document.getElementById("stage-select");
+  select.innerHTML = STAGES.map(
+    (s) => `<option value="${s.id}" ${s.id === c.stage ? "selected" : ""}>${s.label}</option>`
+  ).join("");
+  document.getElementById("modal-overlay").classList.remove("hidden");
+}
+
+function closeModal() {
+  activeCandidateId = null;
+  document.getElementById("modal-overlay").classList.add("hidden");
+}
+
+document.getElementById("go-login").addEventListener("click", () => showView("login"));
+document.getElementById("go-signup").addEventListener("click", () => showView("signup"));
+document.querySelectorAll("[data-back]").forEach((btn) =>
+  btn.addEventListener("click", () => showView("landing"))
+);
+
+document.getElementById("signup-form").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const form = e.currentTarget;
+  const resumeInput = document.getElementById("resume");
+  const newApplicant = {
+    id: `c${Date.now()}`,
+    name: form.fullName.value.trim(),
+    email: form.email.value.trim(),
+    phone: form.phone.value.trim(),
+    qualification: form.qualification.value.trim(),
+    experience: Number(form.experience.value || 0),
+    ctc: Number(form.ctc.value),
+    skills: [form.skill.value],
+    noticePeriod: "Not specified",
+    notes: `Applied via career portal for Accounts Receivable Executive. Resume: ${
+      resumeInput.files[0] ? resumeInput.files[0].name : "not attached"
+    }.`,
+    stage: "applied",
+    resumeName: resumeInput.files[0] ? resumeInput.files[0].name : "Not uploaded",
+  };
+  candidates.unshift(newApplicant);
+  form.reset();
+  document.getElementById("resume-label").textContent = "Click to attach a resume (PDF or Word)";
+  showToast("Application submitted. You are now in the Applied stage.");
+  showView("landing");
+});
+
+document.getElementById("resume").addEventListener("change", (e) => {
+  const file = e.target.files[0];
+  document.getElementById("resume-label").textContent = file
+    ? file.name
+    : "Click to attach a resume (PDF or Word)";
+});
+
+document.getElementById("login-form").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const email = document.getElementById("loginEmail").value.trim();
+  const password = document.getElementById("loginPassword").value;
+  const error = document.getElementById("login-error");
+  if (email === "admin@company.com" && password === "password") {
+    error.classList.add("hidden");
+    document.getElementById("login-form").reset();
+    showView("dashboard");
+    switchPanel("kanban");
+    renderKanban();
+  } else {
+    error.classList.remove("hidden");
+  }
+});
+
+document.getElementById("logout-btn").addEventListener("click", () => {
+  closeModal();
+  document.getElementById("search-input").value = "";
+  searchQuery = "";
+  showView("landing");
+});
+
+document.querySelectorAll(".nav-item[data-panel]").forEach((btn) => {
+  btn.addEventListener("click", () => switchPanel(btn.dataset.panel));
+});
+
+function switchPanel(panel) {
+  document.querySelectorAll(".nav-item[data-panel]").forEach((btn) => {
+    btn.classList.toggle("active", btn.dataset.panel === panel);
+  });
+  document.getElementById("panel-kanban").classList.toggle("hidden", panel !== "kanban");
+  document.getElementById("panel-settings").classList.toggle("hidden", panel !== "settings");
+  document.getElementById("page-title").textContent =
+    panel === "settings" ? "Settings" : "Hiring pipeline";
+  document.getElementById("page-subtitle").textContent =
+    panel === "settings" ? "Workspace preferences" : "Accounts Receivable Executive";
+}
+
+document.getElementById("search-input").addEventListener("input", (e) => {
+  searchQuery = e.target.value;
+  renderKanban();
+});
+
+document.getElementById("modal-close").addEventListener("click", closeModal);
+document.getElementById("modal-overlay").addEventListener("click", (e) => {
+  if (e.target.id === "modal-overlay") closeModal();
+});
+document.getElementById("stage-select").addEventListener("change", (e) => {
+  if (activeCandidateId) moveCandidate(activeCandidateId, e.target.value);
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeModal();
+});
+
+    </script>
   </body>
 </html>
