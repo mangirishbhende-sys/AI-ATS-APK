@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meridian ATS — Accounts Receivable Hiring</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { sans: ["Inter", "system-ui", "sans-serif"] },
+            colors: {
+              brand: {
+                50: "#eef2ff",
+                100: "#e0e7ff",
+                500: "#6366f1",
+                600: "#4f46e5",
+                700: "#4338ca",
+                800: "#3730a3",
+                900: "#1e1b4b",
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="bg-slate-50 text-slate-800 antialiased">
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <!-- ===================== LANDING ===================== -->
+    <section id="view-landing" class="view min-h-screen auth-shell">
+      <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+      </div>
+      <header class="relative z-10 flex items-center justify-between px-6 py-5 max-w-6xl mx-auto">
+        <div class="flex items-center gap-3">
+          <div class="logo-mark">
+            <i class="fa-solid fa-layer-group"></i>
+          </div>
+          <div>
+            <p class="text-white font-bold text-lg leading-none">Meridian ATS</p>
+            <p class="text-indigo-200 text-xs mt-1 tracking-wide">Talent operations</p>
+          </div>
+        </div>
+        <span class="hidden sm:inline-flex items-center gap-2 text-indigo-100 text-sm bg-white/10 backdrop-blur px-3 py-1.5 rounded-full border border-white/15">
+          <i class="fa-solid fa-briefcase text-indigo-200"></i>
+          Open role: Accounts Receivable Executive
+        </span>
+      </header>
+
+      <main class="relative z-10 max-w-6xl mx-auto px-6 pb-16 pt-8">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <p class="inline-flex items-center gap-2 text-indigo-200 text-xs font-semibold tracking-[0.18em] uppercase mb-4">
+            Premium hiring workspace
+          </p>
+          <h1 class="text-4xl sm:text-5xl font-extrabold text-white leading-tight">
+            Hire finance talent with a pipeline you can trust
+          </h1>
+          <p class="mt-4 text-indigo-100/90 text-lg">
+            A focused applicant tracking experience for the Accounts Receivable Executive search — from first application to offer.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <button
+            type="button"
+            id="go-login"
+            class="portal-card group text-left"
+          >
+            <div class="portal-icon bg-indigo-50 text-indigo-600">
+              <i class="fa-solid fa-user-tie"></i>
+            </div>
+            <h2 class="text-xl font-bold text-slate-900 mt-5">Recruiter Login</h2>
+            <p class="text-slate-500 mt-2 text-sm leading-relaxed">
+              Access the Kanban pipeline, review candidate files, and move talent through screening, interview, and offer.
+            </p>
+            <span class="mt-6 inline-flex items-center gap-2 text-indigo-600 font-semibold text-sm">
+              Enter workspace
+              <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
+            </span>
+          </button>
+
+          <button
+            type="button"
+            id="go-signup"
+            class="portal-card group text-left"
+          >
+            <div class="portal-icon bg-sky-50 text-sky-600">
+              <i class="fa-solid fa-file-signature"></i>
+            </div>
+            <h2 class="text-xl font-bold text-slate-900 mt-5">Applicant Signup</h2>
+            <p class="text-slate-500 mt-2 text-sm leading-relaxed">
+              Apply for the Accounts Receivable Executive role. Share your profile, skills, and expected CTC in under two minutes.
+            </p>
+            <span class="mt-6 inline-flex items-center gap-2 text-sky-600 font-semibold text-sm">
+              Start application
+              <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
+            </span>
+          </button>
+        </div>
+      </main>
+    </section>
+
+    <!-- ===================== APPLICANT SIGNUP ===================== -->
+    <section id="view-signup" class="view hidden min-h-screen bg-slate-50">
+      <div class="max-w-3xl mx-auto px-4 py-10">
+        <button type="button" class="back-link" data-back>
+          <i class="fa-solid fa-chevron-left"></i>
+          Back
+        </button>
+        <div class="bg-white rounded-2xl shadow-xl shadow-indigo-100/50 border border-slate-100 overflow-hidden mt-4">
+          <div class="bg-gradient-to-r from-indigo-700 to-blue-600 px-8 py-7 text-white">
+            <p class="text-indigo-200 text-xs font-semibold tracking-widest uppercase">Career portal</p>
+            <h2 class="text-2xl font-bold mt-1">Accounts Receivable Executive</h2>
+            <p class="text-indigo-100 text-sm mt-2">Finance · Full-time · Collections, SAP &amp; ledger control</p>
+          </div>
+          <form id="signup-form" class="p-8 grid sm:grid-cols-2 gap-5">
+            <div class="sm:col-span-2">
+              <label class="field-label" for="fullName">Full Name</label>
+              <input class="field-input" id="fullName" name="fullName" type="text" required placeholder="e.g. Ananya Iyer" />
+            </div>
+            <div>
+              <label class="field-label" for="email">Email</label>
+              <input class="field-input" id="email" name="email" type="email" required placeholder="you@email.com" />
+            </div>
+            <div>
+              <label class="field-label" for="phone">Phone</label>
+              <input class="field-input" id="phone" name="phone" type="tel" required placeholder="+91 98XXX XXXXX" />
+            </div>
+            <div>
+              <label class="field-label" for="qualification">Qualification</label>
+              <input class="field-input" id="qualification" name="qualification" type="text" required placeholder="B.Com, MBA, M.Com…" />
+            </div>
+            <div>
+              <label class="field-label" for="ctc">Expected CTC (LPA)</label>
+              <input class="field-input" id="ctc" name="ctc" type="number" min="1" step="0.1" required placeholder="12.0" />
+            </div>
+            <div>
+              <label class="field-label" for="skill">Primary skill</label>
+              <select class="field-input" id="skill" name="skill" required>
+                <option value="" disabled selected>Select a skill</option>
+                <option value="SAP">SAP</option>
+                <option value="Tally">Tally</option>
+                <option value="Excel">Excel</option>
+                <option value="Reconciliation">Reconciliation</option>
+              </select>
+            </div>
+            <div>
+              <label class="field-label" for="experience">Years of experience</label>
+              <input class="field-input" id="experience" name="experience" type="number" min="0" max="8" step="1" placeholder="3" />
+            </div>
+            <div class="sm:col-span-2">
+              <label class="field-label">Resume</label>
+              <label class="resume-drop">
+                <input type="file" id="resume" accept=".pdf,.doc,.docx" class="hidden" />
+                <i class="fa-solid fa-cloud-arrow-up text-indigo-500 text-xl"></i>
+                <span id="resume-label" class="text-sm text-slate-600">Click to attach a resume (PDF or Word)</span>
+              </label>
+            </div>
+            <div class="sm:col-span-2 pt-2">
+              <button type="submit" class="btn-primary w-full">
+                Submit application
+                <i class="fa-solid fa-paper-plane"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== RECRUITER LOGIN ===================== -->
+    <section id="view-login" class="view hidden min-h-screen auth-shell">
+      <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+      </div>
+      <div class="relative z-10 min-h-screen flex items-center justify-center px-4 py-10">
+        <div class="w-full max-w-md">
+          <button type="button" class="back-link text-indigo-100 hover:text-white" data-back>
+            <i class="fa-solid fa-chevron-left"></i>
+            Back
+          </button>
+          <div class="bg-white rounded-2xl shadow-2xl p-8 mt-4 border border-indigo-50">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="logo-mark logo-mark-sm">
+                <i class="fa-solid fa-layer-group"></i>
+              </div>
+              <div>
+                <h2 class="text-xl font-bold text-slate-900">Recruiter sign in</h2>
+                <p class="text-sm text-slate-500">Meridian hiring workspace</p>
+              </div>
+            </div>
+            <form id="login-form" class="space-y-4">
+              <div>
+                <label class="field-label" for="loginEmail">Work email</label>
+                <input class="field-input" id="loginEmail" type="email" required placeholder="admin@company.com" autocomplete="username" />
+              </div>
+              <div>
+                <label class="field-label" for="loginPassword">Password</label>
+                <input class="field-input" id="loginPassword" type="password" required placeholder="••••••••" autocomplete="current-password" />
+              </div>
+              <p id="login-error" class="hidden text-sm text-rose-600 bg-rose-50 border border-rose-100 rounded-lg px-3 py-2">
+                Invalid credentials. Use the demo account below.
+              </p>
+              <button type="submit" class="btn-primary w-full">
+                Sign in to dashboard
+                <i class="fa-solid fa-right-to-bracket"></i>
+              </button>
+              <p class="text-center text-xs text-slate-500 bg-slate-50 rounded-lg px-3 py-2 border border-slate-100">
+                Demo access: <span class="font-semibold text-slate-700">admin@company.com</span> /
+                <span class="font-semibold text-slate-700">password</span>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== DASHBOARD ===================== -->
+    <section id="view-dashboard" class="view hidden min-h-screen">
+      <div class="flex min-h-screen">
+        <aside class="sidebar">
+          <div class="flex items-center gap-3 px-5 py-6">
+            <div class="logo-mark logo-mark-sm">
+              <i class="fa-solid fa-layer-group"></i>
+            </div>
+            <div>
+              <p class="text-white font-bold">Meridian</p>
+              <p class="text-indigo-300 text-[11px] tracking-wide">ATS Console</p>
+            </div>
+          </div>
+          <nav class="px-3 space-y-1">
+            <button type="button" class="nav-item active" data-panel="kanban">
+              <i class="fa-solid fa-table-columns w-5"></i>
+              Dashboard
+            </button>
+            <button type="button" class="nav-item" data-panel="settings">
+              <i class="fa-solid fa-gear w-5"></i>
+              Settings
+            </button>
+            <button type="button" id="logout-btn" class="nav-item nav-item-muted">
+              <i class="fa-solid fa-arrow-right-from-bracket w-5"></i>
+              Log Out
+            </button>
+          </nav>
+          <div class="mt-auto p-4">
+            <div class="rounded-xl bg-white/5 border border-white/10 p-3">
+              <p class="text-[11px] text-indigo-200 uppercase tracking-wider font-semibold">Active requisition</p>
+              <p class="text-white text-sm font-semibold mt-1">AR Executive</p>
+              <p class="text-indigo-300 text-xs mt-0.5">Finance · Collections</p>
+            </div>
+          </div>
+        </aside>
+
+        <div class="flex-1 flex flex-col min-w-0 bg-slate-50">
+          <header class="topbar">
+            <div>
+              <h1 class="text-lg font-bold text-slate-900" id="page-title">Hiring pipeline</h1>
+              <p class="text-xs text-slate-500" id="page-subtitle">Accounts Receivable Executive</p>
+            </div>
+            <div class="flex items-center gap-3 flex-1 max-w-xl ml-auto">
+              <div class="search-wrap">
+                <i class="fa-solid fa-magnifying-glass text-slate-400"></i>
+                <input
+                  id="search-input"
+                  type="search"
+                  placeholder="Search candidates by name or skill…"
+                  autocomplete="off"
+                />
+              </div>
+              <div class="hidden md:flex items-center gap-2 text-sm text-slate-600 bg-white border border-slate-200 rounded-full px-3 py-1.5">
+                <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+                <span id="candidate-count">10 candidates</span>
+              </div>
+            </div>
+          </header>
+
+          <div id="panel-kanban" class="panel flex-1 overflow-x-auto p-5">
+            <div id="kanban" class="kanban"></div>
+          </div>
+
+          <div id="panel-settings" class="panel hidden flex-1 overflow-y-auto p-8">
+            <div class="max-w-2xl space-y-6">
+              <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                <h3 class="font-bold text-slate-900">Workspace</h3>
+                <p class="text-sm text-slate-500 mt-1">Demo settings for this frontend-only ATS.</p>
+                <div class="mt-5 grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="field-label">Company</label>
+                    <input class="field-input" value="Northstar Financial" readonly />
+                  </div>
+                  <div>
+                    <label class="field-label">Open role</label>
+                    <input class="field-input" value="Accounts Receivable Executive" readonly />
+                  </div>
+                </div>
+              </div>
+              <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                <h3 class="font-bold text-slate-900">Notifications</h3>
+                <label class="flex items-center justify-between py-3 border-b border-slate-100">
+                  <span class="text-sm text-slate-700">Email when a candidate applies</span>
+                  <input type="checkbox" checked class="h-4 w-4 accent-indigo-600" />
+                </label>
+                <label class="flex items-center justify-between py-3">
+                  <span class="text-sm text-slate-700">Weekly pipeline digest</span>
+                  <input type="checkbox" class="h-4 w-4 accent-indigo-600" />
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CANDIDATE MODAL ===================== -->
+    <div id="modal-overlay" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-name">
+      <div class="modal-card">
+        <button type="button" id="modal-close" class="modal-close" aria-label="Close">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="flex items-start gap-4">
+          <div id="modal-avatar" class="avatar avatar-lg"></div>
+          <div class="min-w-0">
+            <h3 id="modal-name" class="text-xl font-bold text-slate-900"></h3>
+            <p id="modal-role" class="text-sm text-slate-500">Accounts Receivable Executive</p>
+            <p id="modal-contact" class="text-sm text-slate-600 mt-2"></p>
+          </div>
+        </div>
+        <dl class="mt-6 grid grid-cols-2 gap-4 text-sm">
+          <div class="meta-box">
+            <dt>Qualification</dt>
+            <dd id="modal-qualification"></dd>
+          </div>
+          <div class="meta-box">
+            <dt>Experience</dt>
+            <dd id="modal-experience"></dd>
+          </div>
+          <div class="meta-box">
+            <dt>Expected CTC</dt>
+            <dd id="modal-ctc"></dd>
+          </div>
+          <div class="meta-box">
+            <dt>Notice period</dt>
+            <dd id="modal-notice"></dd>
+          </div>
+        </dl>
+        <div class="mt-4">
+          <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Skills</p>
+          <div id="modal-skills" class="flex flex-wrap gap-2 mt-2"></div>
+        </div>
+        <div class="mt-4">
+          <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Notes</p>
+          <p id="modal-notes" class="text-sm text-slate-600 mt-1 leading-relaxed"></p>
+        </div>
+        <div class="mt-6">
+          <label class="field-label" for="stage-select">Move to pipeline stage</label>
+          <select id="stage-select" class="field-input"></select>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
