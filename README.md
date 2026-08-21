@@ -1,16 +1,28 @@
-# Meridian ATS
+# AI-ATS-APK
 
-Frontend-only Applicant Tracking System for the **Accounts Receivable Executive** role.
+Applicant Tracking System for the **Accounts Receivable Executive** role.
 
-## Open the live app
+This repository includes:
 
-Use one of these preview links (GitHub file view only shows source code, not the app):
+- **Web SPA** — `index.html`, `styles.css`, `script.js` (open in a browser)
+- **Android app** — Gradle project under `app/`
 
-1. **GitHack preview:** https://raw.githack.com/mangirishbhende-sys/AI-ATS-APK/cursor/ats-frontend-spa-1bfe/index.html
-2. **HTML Preview:** https://htmlpreview.github.io/?https://github.com/mangirishbhende-sys/AI-ATS-APK/blob/cursor/ats-frontend-spa-1bfe/index.html
+## Web app (Meridian ATS)
 
-If those are blocked on your network, download the zip and open `index.html` in Chrome or Edge:
+GitHub file view only shows source. Open the app with a preview link, or download the repo and double-click `index.html`.
 
-https://github.com/mangirishbhende-sys/AI-ATS-APK/archive/refs/heads/cursor/ats-frontend-spa-1bfe.zip
+- GitHack: https://raw.githack.com/mangirishbhende-sys/AI-ATS-APK/main/index.html
+- HTML Preview: https://htmlpreview.github.io/?https://github.com/mangirishbhende-sys/AI-ATS-APK/blob/main/index.html
 
 Recruiter login: `admin@company.com` / `password`
+
+## Android app
+
+Prerequisites are installed automatically in Cloud Agent environments via `.cursor/environment.json`.
+
+```bash
+./gradlew test
+./gradlew assembleDebug
+```
+
+The debug APK is written to `app/build/outputs/apk/debug/app-debug.apk`.
